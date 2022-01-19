@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const fs = require('fs')
 const app = express()
@@ -7,7 +8,9 @@ const userRouter = require('./routers/usersRouter')
 const {logRequest} = require('./generalHelpers')
 const { v4: uuidv4 } = require("uuid");
 
+
 app.use(bodyParser.json())
+
 /*
 https://www.youtube.com/playlist?list=PLdRrBA8IaU3Xp_qy8X-1u-iqeLlDCmR8a
 Fork the project 
@@ -30,6 +33,11 @@ Bonus
 Edit patch end point to handle the sent data only >>>
 If age is not sent return all users >>>
 
+Lab 5: 
+user database instead of files >>>
+user jwt to authenticate users after login  >>>
+check if the user delete/patch/get his own document >>>
+check if user who use GET /users is authenticated >>>
 
 git add .
 git commit -m "message"
@@ -40,9 +48,9 @@ app.use("/users", userRouter);
 
 app.use(logRequest)
 
+
 app.use((err,req,res,next)=>{
   res.status(err.status).send(err)
-  // console.log(err.message);
 })
 
 
